@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css">
 </head>
 <body>
-    {% include header.html %}
-    
-    <main class="container animation-fade">
-        {{ content }}
-    </main>
+    <div class="site-wrapper">
+        {% include header.html %}
+        
+        <main class="main-content">
+            {{ content }}
+        </main>
 
-    {% include footer.html %}
+        {% include footer.html %}
+    </div>
 </body>
 </html>

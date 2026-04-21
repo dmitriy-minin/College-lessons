@@ -394,3 +394,30 @@ nav {
         padding: 20px;
     }
 }
+
+/* Делаем body и html на всю высоту экрана */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Контейнер-обертка превращается во Flex-контейнер */
+.site-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Минимальная высота — 100% видимого экрана */
+}
+
+/* Контентная часть забирает всё свободное место, выталкивая футер вниз */
+.main-content {
+    flex: 1 0 auto;
+}
+
+/* Футер просто фиксируется в конце */
+footer {
+    flex-shrink: 0;
+    background: #2d3436; /* Ваш цвет футера */
+    color: white;
+    padding: 20px 0;
+    margin-top: 40px; /* Отступ от контента, если его много */
+}
