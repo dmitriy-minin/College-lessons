@@ -1,11 +1,11 @@
 ---
 layout: default
 ---
-<div class="container">
+<div class="container lessons-container">
     {% if page.collection == 'python_lessons' %}
-        <a href="{{ '/python.html' | relative_url }}" class="back-btn">← Назад к списку</a>
+        <a href="{{ '/python.html' | relative_url }}" class="back-btn">← К списку уроков</a>
     {% elsif page.collection == 'php_lessons' %}
-        <a href="{{ '/php.html' | relative_url }}" class="back-btn">← Назад к списку</a>
+        <a href="{{ '/php.html' | relative_url }}" class="back-btn">← К списку уроков</a>
     {% else %}
         <a href="{{ '/' | relative_url }}" class="back-btn">← На главную</a>
     {% endif %}

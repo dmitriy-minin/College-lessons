@@ -1,16 +1,16 @@
 ---
 layout: default
-title: Python - Все уроки
+title: Курс PHP - Все уроки
 ---
 
 <div class="container lessons-container">
     <a href="index.html" class="back-btn">← К списку предметов</a>
-    <h1>Учебная программа Python</h1>
+    <h1>Программа курса PHP</h1>
     <p>Нажмите на тему, чтобы открыть материалы урока.</p>
 
     <div class="lessons-list">
-        {% assign lessons = site.python_lessons | sort: 'order' %}
-        {% for lesson in site.python_lessons %}
+        {% assign lessons = site.php_lessons | sort: 'order' %}
+        {% for lesson in site.php_lessons %}
         <a href="{{ lesson.url | relative_url }}" class="lesson-item">
             <span class="lesson-title">{{ lesson.title }}</span>
         </a>

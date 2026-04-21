@@ -347,7 +347,7 @@ footer {
 
 .lesson-content-wrapper {
     background: #fff;
-    padding: 40px;
+    padding: 30px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     margin: 40px 0;
@@ -365,7 +365,6 @@ footer {
 
 .lesson-content-wrapper h1 {
     color: #2d3436;
-    font-size: 2.2rem;
     margin-bottom: 10px;
 }
 
@@ -425,4 +424,67 @@ footer {
     color: white;
     padding: 20px 0;
     margin-top: 40px; /* Отступ от контента, если его много */
+}
+
+/* Стили для блоков кода */
+pre, code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 14px;
+}
+
+/* Контейнер кода (как на GitHub) */
+figure.highlight, pre {
+    background: #0d1117; /* Глубокий темный фон GitHub */
+    color: #c9d1d9;
+    border-radius: 6px;
+    padding: 16px;
+    overflow: auto;
+    line-height: 1.45;
+    border: 1px solid #30363d;
+    margin: 20px 0;
+}
+
+/* Подсветка синтаксиса (цвета Rouge) */
+.highlight .k { color: #ff7b72; } /* Ключевые слова (if, def) */
+.highlight .s { color: #a5d6ff; } /* Строки "text" */
+.highlight .nf { color: #d2a8ff; } /* Названия функций */
+.highlight .nc { color: #f0883e; } /* Классы */
+.highlight .nn { color: #f0883e; } /* Модули */
+.highlight .c1 { color: #8b949e; font-style: italic; } /* Комментарии # */
+.highlight .mi { color: #79c0ff; } /* Числа */
+.highlight .o { color: #ff7b72; }  /* Операторы (=, +) */
+
+/* Контейнер для позиционирования кнопки */
+.highlight {
+    position: relative;
+}
+
+.copy-code-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #30363d;
+    color: #c9d1d9;
+    border: 1px solid #f0f6fc1a;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    opacity: 0; /* Скрыта по умолчанию */
+}
+
+/* Показываем кнопку при наведении на блок кода */
+.highlight:hover .copy-code-button {
+    opacity: 1;
+}
+
+.copy-code-button:hover {
+    background: #444c56;
+    border-color: #8b949e;
+}
+
+.copy-code-button.copied {
+    background: #238636; /* Зеленый цвет при успехе */
+    color: white;
 }

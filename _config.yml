@@ -1,4 +1,11 @@
-title: Учебный Портал
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  syntax_highlighter_opts:
+    block_code_output_to_label: true
+    span_code_output_to_label: false
+
+title: GitLessons
 baseurl: "/College-lessons"
 url: "" 
 
@@ -23,3 +30,4 @@ defaults:
       type: "php_lessons"
     values:
       layout: "lesson"
+
