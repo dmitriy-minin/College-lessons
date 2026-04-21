@@ -1,0 +1,20 @@
+---
+layout: default
+title: Курс Python - Все уроки
+---
+
+<div class="container lessons-container">
+    <a href="index.html" class="back-btn">← К списку предметов</a>
+    <h1>Программа курса Python</h1>
+    <p>Нажмите на тему, чтобы открыть материалы урока.</p>
+
+    <div class="lessons-list">
+        {% assign lessons = site.python_lessons | sort: 'order' %}
+        {% for lesson in lessons %}
+            <a href="{{ lesson.url | relative_url }}" class="lesson-item">
+                <span class="lesson-number">{{ forloop.index }}</span>
+                <span class="lesson-title">{{ lesson.title }}</span>
+            </a>
+        {% endfor %}
+    </div>
+</div>

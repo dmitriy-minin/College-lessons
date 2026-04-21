@@ -1,0 +1,7 @@
+title: Учебный Портал
+baseurl: "" # Оставить пустым для GitHub Pages
+
+collections:
+  python_lessons:
+    output: true
+    permalink: /python/:name
