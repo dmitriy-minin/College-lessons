@@ -1,6 +1,6 @@
 title: Учебный Портал
 baseurl: "/College-lessons"
-url: "https://dmitriy-minin.github.io" 
+url: "" 
 
 collections:
   python_lessons:
