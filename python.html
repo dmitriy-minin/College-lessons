@@ -10,11 +10,10 @@ title: Курс Python - Все уроки
 
     <div class="lessons-list">
         {% assign lessons = site.python_lessons | sort: 'order' %}
-        {% for lesson in lessons %}
-            <a href="{{ lesson.url | relative_url }}" class="lesson-item">
-                <span class="lesson-number">{{ forloop.index }}</span>
-                <span class="lesson-title">{{ lesson.title }}</span>
-            </a>
+        {% for lesson in site.python_lessons %}
+        <a href="{{ lesson.url | relative_url }}" class="lesson-item">
+            <span class="lesson-title">{{ lesson.title }}</span>
+        </a>
         {% endfor %}
     </div>
 </div>

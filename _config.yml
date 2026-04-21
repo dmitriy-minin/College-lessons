@@ -1,5 +1,6 @@
 title: Учебный Портал
-baseurl: "" # Оставить пустым для GitHub Pages
+baseurl: "/lessons"
+url: "https://dmitriy-minin.github.io" 
 
 collections:
   python_lessons:
