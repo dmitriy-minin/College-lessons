@@ -203,7 +203,7 @@ footer {
     .container {
         padding: 0 15px;
     }
-    
+
     .lessons-container h1{
         font-size: 1.4rem;
         margin-top: 0px;
@@ -501,4 +501,89 @@ figure.highlight, pre {
 .copy-code-button.copied {
     background: #238636; /* Зеленый цвет при успехе */
     color: white;
+}
+
+.lesson-divider {
+    border: 0;
+    border-top: 1px solid #e1e4e8;
+    margin: 40px 0 20px;
+}
+
+.lesson-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.nav-prev, .nav-next {
+    flex: 1;
+    display: flex;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: #fff;
+    border: 1px solid #e1e4e8;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #2d3436;
+    width: 100%;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-link:hover {
+    border-color: #0984e3;
+    background: #f0f7ff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(9, 132, 227, 0.1);
+}
+
+.nav-link.next {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.nav-arrow {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0984e3;
+}
+
+.nav-text {
+    display: flex;
+    flex-direction: column;
+    margin: 0 15px;
+}
+
+.nav-text small {
+    color: #636e72;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-text div {
+    font-weight: 600;
+}
+
+/* Стили для неактивных кнопок */
+.nav-disabled {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f5f5f5;
+    color: #b2bec3;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    width: 100%;
+    cursor: not-allowed;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .lesson-navigation {
+        flex-direction: column;
+    }
 }

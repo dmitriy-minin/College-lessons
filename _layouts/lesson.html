@@ -3,11 +3,11 @@ layout: default
 ---
 <div class="container lessons-container">
     {% if page.collection == 'python_lessons' %}
-        <a href="{{ '/python.html' | relative_url }}" class="back-btn">← К списку уроков</a>
+    <a href="{{ '/python.html' | relative_url }}" class="back-btn">← К списку уроков</a>
     {% elsif page.collection == 'php_lessons' %}
-        <a href="{{ '/php.html' | relative_url }}" class="back-btn">← К списку уроков</a>
+    <a href="{{ '/php.html' | relative_url }}" class="back-btn">← К списку уроков</a>
     {% else %}
-        <a href="{{ '/' | relative_url }}" class="back-btn">← На главную</a>
+    <a href="{{ '/' | relative_url }}" class="back-btn">← На главную</a>
     {% endif %}
 
     <div class="lesson-content-wrapper">
@@ -15,5 +15,48 @@ layout: default
         <div class="lesson-body">
             {{ content }}
         </div>
+    </div>
+
+
+    <div class="lesson-navigation">
+        {% assign lessons = site[page.collection] | sort: 'order' %}
+
+        {% for lesson in lessons %}
+        {% if lesson.url == page.url %}
+
+        <div class="nav-prev">
+            {% if forloop.first %}
+            <span class="nav-disabled">← Предыдущий урок</span>
+            {% else %}
+            {% assign prev_index = forloop.index0 | minus: 1 %}
+            {% assign prev_lesson = lessons[prev_index] %}
+            <a href="{{ prev_lesson.url | relative_url }}" class="nav-link">
+                <span class="nav-arrow">←</span>
+                <div class="nav-text">
+                    <small>Назад</small>
+                    <div>{{ prev_lesson.title }}</div>
+                </div>
+            </a>
+            {% endif %}
+        </div>
+
+        <div class="nav-next">
+            {% if forloop.last %}
+            <span class="nav-disabled">Следующий урок →</span>
+            {% else %}
+            {% assign next_index = forloop.index0 | plus: 1 %}
+            {% assign next_lesson = lessons[next_index] %}
+            <a href="{{ next_lesson.url | relative_url }}" class="nav-link next">
+                <div class="nav-text">
+                    <small>Далее</small>
+                    <div>{{ next_lesson.title }}</div>
+                </div>
+                <span class="nav-arrow">→</span>
+            </a>
+            {% endif %}
+        </div>
+
+        {% endif %}
+        {% endfor %}
     </div>
 </div>
