@@ -587,3 +587,75 @@ figure.highlight, pre {
         flex-direction: column;
     }
 }
+
+/* Контейнер для кнопок */
+.scroll-nav {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+/* Общий стиль кнопок */
+.scroll-nav button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #0984e3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;opacity: 0;           /* По умолчанию полностью прозрачны */
+    transition: opacity 0.4s ease, transform 0.3s ease, visibility 0.4s;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;           /* По умолчанию полностью прозрачны */
+    visibility: hidden;    /* И не кликабельны */
+    transition: opacity 0.4s ease, transform 0.3s ease, visibility 0.4s;
+}
+
+.scroll-nav button:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    background-color: #0773c5;
+}
+
+#scrollTopBtn, #scrollBottomBtn {
+    opacity: 0;
+    visibility: hidden;
+    display: flex; /* Кнопки всегда имеют flex-структуру */
+    transition: opacity 0.4s ease, transform 0.3s ease, visibility 0.4s;
+}
+
+#scrollTopBtn.is-visible, #scrollBottomBtn.is-visible {
+    opacity: 0.7;
+    visibility: visible;
+}
+
+/* Класс, который мы будем добавлять через JS */
+.scroll-nav button.is-visible {
+    opacity: 0.7;
+    visibility: visible;
+}
+
+.scroll-nav button.is-visible:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 600px) {
+    .scroll-nav {
+        right: 15px;
+        bottom: 15px;
+    }
+    .scroll-nav button {
+        width: 40px;
+        height: 40px;
+    }
+}
+
