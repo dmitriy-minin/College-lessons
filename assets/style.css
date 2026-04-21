@@ -1,14 +1,38 @@
+/* === CSS ПЕРЕМЕННЫЕ === */
+:root {
+    --color-primary: #0984e3;
+    --color-primary-dark: #2754b6;
+    --color-dark: #2d3436;
+    --color-dark-secondary: #3d4648;
+    --color-light: #fff;
+    --color-text: #2d3436;
+    --color-text-light: #dfe6e9;
+    --color-bg: #f0f2f5;
+    --color-border: #e1e4e8;
+    --color-footer: #cfcfcf;
+    --shadow-sm: 0 2px 5px rgba(0,0,0,0.1);
+    --shadow-md: 0 10px 20px rgba(0,0,0,0.1);
+    --shadow-lg: 0 4px 10px rgba(9, 132, 227, 0.3);
+    --transition-default: 0.3s ease;
+    --transition-fast: 0.2s;
+    --border-radius: 8px;
+    --border-radius-lg: 15px;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* === RESET === */
 * {
     box-sizing: border-box;
 }
 
+/* === БАЗОВЫЕ СТИЛИ === */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: var(--font-family);
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    color: #2d3436;
-    background-color: #f0f2f5;
+    color: var(--color-text);
+    background-color: var(--color-bg);
 }
 
 .container {
@@ -17,113 +41,7 @@ body {
     padding: 0 20px;
 }
 
-/* Навигация */
-nav {
-    background: #2d3436;
-    padding: 15px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.nav-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.nav-links a {
-    color: #dfe6e9;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 0.95rem;
-    transition: color 0.2s;
-}
-
-.nav-links a:hover {
-    color: #0984e3;
-}
-
-/* Сетка курсов */
-.course-grid {
-    display: grid;
-    /* Автоматические колонки: минимум 300px, максимум 1 часть ширины */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin: 40px 0;
-}
-
-.card {
-    background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    border: 1px solid #e1e4e8;
-    display: flex;
-    flex-direction: column;
-}
-
-.card h3 {
-    margin: 0 0 15px 0;
-    color: #2d3436;
-}
-
-.btn {
-    display: block;
-    margin-top: auto;
-    padding: 12px;
-    background: #0984e3;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    text-align: center;
-    font-weight: bold;
-}
-
-/* АДАПТИВНОСТЬ ДЛЯ МОБИЛОК */
-@media (max-width: 768px) {
-    .nav-wrapper {
-        flex-direction: column; /* Элементы в колонку */
-        gap: 15px;
-    }
-
-    .nav-links {
-        display: flex;
-        flex-wrap: wrap; /* Если ссылок много, перенесутся */
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .nav-links a {
-        margin: 0;
-        font-size: 0.85rem;
-        background: #3d4648; /* Легкая подсветка кнопок на мобилке */
-        padding: 5px 12px;
-        border-radius: 20px;
-    }
-
-    .course-grid {
-        grid-template-columns: 1fr; /* На мобилках карточки на всю ширину */
-    }
-
-    .container {
-        padding: 0 15px;
-    }
-}
-
-footer {
-    text-align: center;
-    padding: 30px 0;
-    margin-top: 60px;
-    color: #cfcfcf;
-    font-size: 0.9rem;
-    background-color: #2d3436;
-}
-
-/* Анимация появления снизу вверх */
+/* === АНИМАЦИИ === */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -135,48 +53,37 @@ footer {
     }
 }
 
-/* Анимация плавного проявления */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-/* Применяем к карточкам, чтобы они появлялись по очереди */
-.card {
-    animation: fadeInUp 0.6s ease backwards;
+/* === НАВИГАЦИЯ === */
+nav {
+    background: var(--color-dark);
+    padding: 15px 0;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-default);
 }
 
-/* Небольшая задержка для каждой карточки, чтобы создать "эффект домино" */
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-.card:nth-child(4) { animation-delay: 0.4s; }
-
-/* Карточки приподнимаются и подсвечиваются */
-.card {
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                box-shadow 0.3s ease;
+.nav-wrapper {
+    display: flex;
+    align-items: center;
 }
 
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border-color: #0984e3; /* Цвет акцента */
+.logo {
+    color: var(--color-light);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
 }
 
-/* Кнопка "пульсирует" при наведении */
-.btn {
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    background: #2754b6; /* Немного меняем цвет */
-    transform: scale(1.02);
-    box-shadow: 0 4px 10px rgba(9, 132, 227, 0.3);
-}
-
-/* Ссылки в меню плавно подчеркиваются */
 .nav-links a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 0.95rem;
+    transition: color var(--transition-fast);
     position: relative;
 }
 
@@ -187,16 +94,114 @@ footer {
     height: 2px;
     bottom: -5px;
     left: 0;
-    background-color: #0984e3;
-    transition: width 0.3s ease;
+    background-color: var(--color-primary);
+    transition: width var(--transition-default);
+}
+
+.nav-links a:hover {
+    color: var(--color-primary);
 }
 
 .nav-links a:hover::after {
     width: 100%;
 }
 
-nav {
-    transition: all 0.3s ease;
+/* === СЕТКА КУРСОВ === */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 40px 0;
+}
+
+/* === КАРТОЧКИ === */
+.card {
+    background: var(--color-light);
+    padding: 30px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    animation: fadeInUp 0.6s ease backwards;
+    transition: transform var(--transition-default) cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow var(--transition-default);
+}
+
+.card h3 {
+    margin: 0 0 15px 0;
+    color: var(--color-text);
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+/* === КНОПКА === */
+.btn {
+    display: block;
+    margin-top: auto;
+    padding: 12px;
+    background: var(--color-primary);
+    color: var(--color-light);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: bold;
+    transition: all var(--transition-default);
+}
+
+.btn:hover {
+    background: var(--color-primary-dark);
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+/* === ПОДВАЛ === */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 60px;
+    color: var(--color-footer);
+    font-size: 0.9rem;
+    background-color: var(--color-dark);
+}
+
+/* === АДАПТИВНОСТЬ === */
+@media (max-width: 768px) {
+    .nav-wrapper {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-links a {
+        margin: 0;
+        font-size: 0.85rem;
+        background: var(--color-dark-secondary);
+        padding: 5px 12px;
+        border-radius: 20px;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
 }
 
 /* Класс для блокировки карточки курса */
