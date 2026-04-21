@@ -123,8 +123,9 @@ nav {
     display: flex;
     flex-direction: column;
     animation: fadeInUp 0.6s ease backwards;
-    transition: transform var(--transition-default) cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                box-shadow var(--transition-default);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .card h3 {
@@ -202,6 +203,11 @@ footer {
     .container {
         padding: 0 15px;
     }
+    
+    .lessons-container h1{
+        font-size: 1.4rem;
+        margin-top: 0px;
+    }
 }
 
 /* Класс для блокировки карточки курса */
@@ -274,6 +280,10 @@ footer {
 .lessons-container {
     margin-top: 30px;
     animation: fadeIn 0.8s ease;
+}
+
+.lessons-container h1 {
+    margin-top: 0px;
 }
 
 .lessons-list {
@@ -350,7 +360,7 @@ footer {
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    margin: 40px 0;
+    margin: 10px 0;
 }
 
 /* Оформление блоков кода (вы же будете давать код студентам) */
@@ -396,6 +406,10 @@ footer {
     }
     .lesson-content-wrapper {
         padding: 20px;
+    }
+    .lessons-container h1{
+        font-size: 1.4rem;
+        margin-top: 0px;
     }
 }
 
