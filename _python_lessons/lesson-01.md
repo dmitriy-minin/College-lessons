@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: lesson
 title: "Урок 1: Введение"
 order: 1
 ---

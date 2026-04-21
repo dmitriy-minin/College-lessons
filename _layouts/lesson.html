@@ -2,12 +2,17 @@
 layout: default
 ---
 <div class="container">
-    <div class="lesson-content-wrapper animation-fade">
-        <a href="{{ '/python.html' | relative_url }}" class="back-btn">← К списку уроков</a>
+    {% if page.collection == 'python_lessons' %}
+        <a href="{{ '/python.html' | relative_url }}" class="back-btn">← Назад к списку</a>
+    {% elsif page.collection == 'php_lessons' %}
+        <a href="{{ '/php.html' | relative_url }}" class="back-btn">← Назад к списку</a>
+    {% else %}
+        <a href="{{ '/' | relative_url }}" class="back-btn">← На главную</a>
+    {% endif %}
+
+    <div class="lesson-content-wrapper">
         <h1>{{ page.title }}</h1>
-        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-        
-        <div class="lesson-text">
+        <div class="lesson-body">
             {{ content }}
         </div>
     </div>

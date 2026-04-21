@@ -6,3 +6,20 @@ collections:
   python_lessons:
     output: true
     permalink: /python/:name
+    back_link: "python.html" 
+  php_lessons:
+    output: true
+    permalink: /php/:name
+    back_link: "php.html"
+
+defaults:
+  - scope:
+      path: ""
+      type: "python_lessons"
+    values:
+      layout: "lesson"
+  - scope:
+      path: ""
+      type: "php_lessons"
+    values:
+      layout: "lesson"
