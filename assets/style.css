@@ -659,3 +659,47 @@ figure.highlight, pre {
     }
 }
 
+/* Контейнер для адаптивности (чтобы таблицы не вылезали за край на телефонах) */
+.lesson-content-wrapper table {
+    width: 100%;
+    margin: 25px 0;
+    border-collapse: collapse; /* Убирает двойные рамки */
+    line-height: 1.5;
+    font-size: 15px;
+    display: block;
+    overflow-x: auto; /* Добавляет горизонтальную прокрутку на мобильных */
+}
+
+/* Стили заголовков */
+.lesson-content-wrapper th {
+    background-color: #f6f8fa;
+    font-weight: 600;
+    text-align: left;
+    border: 1px solid #d0d7de;
+    padding: 12px 15px;
+}
+
+/* Стили ячеек */
+.lesson-content-wrapper td {
+    border: 1px solid #d0d7de;
+    padding: 10px 15px;
+    vertical-align: top;
+}
+
+/* "Зебра" — подсвечиваем каждую вторую строку для читаемости */
+.lesson-content-wrapper tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+/* Подсветка строки при наведении */
+.lesson-content-wrapper tr:hover {
+    background-color: #f2f8ff;
+}
+
+/* Чтобы код внутри таблиц выглядел аккуратно */
+.lesson-content-wrapper td code {
+    background: #afb8c133;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 85%;
+}
