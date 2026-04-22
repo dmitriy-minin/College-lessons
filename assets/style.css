@@ -20,16 +20,19 @@
     --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* === RESET === */
+/* === RESET И БАЗОВЫЕ СТИЛИ === */
 * {
     box-sizing: border-box;
 }
 
-/* === БАЗОВЫЕ СТИЛИ === */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     font-family: var(--font-family);
     line-height: 1.6;
-    margin: 0;
     padding: 0;
     color: var(--color-text);
     background-color: var(--color-bg);
@@ -58,7 +61,9 @@ body {
     to { opacity: 1; }
 }
 
-/* === НАВИГАЦИЯ === */
+/* === КОМПОНЕНТЫ === */
+
+/* Навигация */
 nav {
     background: var(--color-dark);
     padding: 15px 0;
@@ -72,10 +77,26 @@ nav {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: var(--color-light);
     font-size: 1.5rem;
     font-weight: bold;
     text-decoration: none;
+    transition: color var(--transition-default);
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--color-primary);
+    transition: transform var(--transition-default);
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(-10deg) scale(1.1);
+    color: var(--color-light);
 }
 
 .nav-links a {
@@ -106,7 +127,18 @@ nav {
     width: 100%;
 }
 
-/* === СЕТКА КУРСОВ === */
+.nav-links a.disabled {
+    color: #beccd1 !important;
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+}
+
+.nav-links a.disabled::after {
+    display: none;
+}
+
+/* Сетка курсов */
 .course-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -114,7 +146,7 @@ nav {
     margin: 40px 0;
 }
 
-/* === КАРТОЧКИ === */
+/* Карточки */
 .card {
     background: var(--color-light);
     padding: 30px;
@@ -123,7 +155,7 @@ nav {
     display: flex;
     flex-direction: column;
     animation: fadeInUp 0.6s ease backwards;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 box-shadow 0.3s ease;
     will-change: transform;
 }
@@ -144,7 +176,31 @@ nav {
     border-color: var(--color-primary);
 }
 
-/* === КНОПКА === */
+.card.locked {
+    filter: grayscale(0.9);
+    opacity: 0.7;
+    position: relative;
+    pointer-events: none;
+    user-select: none;
+    cursor: not-allowed;
+}
+
+.card.locked::before {
+    content: "недоступно";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #636e72;
+    color: var(--color-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+/* Кнопки */
 .btn {
     display: block;
     margin-top: auto;
@@ -164,7 +220,7 @@ nav {
     box-shadow: var(--shadow-lg);
 }
 
-/* === ПОДВАЛ === */
+/* Подвал */
 footer {
     text-align: center;
     padding: 30px 0;
@@ -172,6 +228,425 @@ footer {
     color: var(--color-footer);
     font-size: 0.9rem;
     background-color: var(--color-dark);
+}
+
+/* === СТРАНИЦЫ === */
+
+/* Главная страница */
+.site-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+/* Страница уроков */
+.lessons-container {
+    margin-top: 30px;
+    animation: fadeIn 0.8s ease;
+}
+
+.lessons-container h1 {
+    margin-top: 0;
+}
+
+.lessons-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.lesson-item {
+    display: flex;
+    align-items: center;
+    background: var(--color-light);
+    padding: 18px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.lesson-item:hover {
+    border-color: var(--color-primary);
+    background: #f8fbff;
+    transform: translateX(10px);
+    box-shadow: 0 4px 12px rgba(9, 132, 227, 0.08);
+}
+
+.lesson-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background: #eef2f7;
+    color: var(--color-primary);
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-right: 20px;
+    flex-shrink: 0;
+    transition: background var(--transition-default);
+}
+
+.lesson-item:hover .lesson-number {
+    background: var(--color-primary);
+    color: var(--color-light);
+}
+
+.lesson-title {
+    font-weight: 500;
+    font-size: 1.1rem;
+    flex-grow: 1;
+}
+
+.lesson-item::after {
+    content: '→';
+    font-size: 1.2rem;
+    color: #b2bec3;
+    transition: transform var(--transition-default);
+}
+
+.lesson-item:hover::after {
+    transform: translateX(5px);
+    color: var(--color-primary);
+}
+
+/* Страница урока */
+.lesson-content-wrapper {
+    background: var(--color-light);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin: 10px 0;
+}
+
+.lesson-content-wrapper h1 {
+    color: var(--color-text);
+    margin-bottom: 10px;
+}
+
+.lesson-content-wrapper pre {
+    background: var(--color-dark);
+    color: #fab1a0;
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #636e72;
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+}
+
+.back-btn:hover {
+    color: var(--color-primary);
+}
+
+.lesson-divider {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin: 40px 0 20px;
+}
+
+.lesson-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.nav-prev, .nav-next {
+    flex: 1;
+    display: flex;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--color-light);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--color-text);
+    width: 100%;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-link:hover {
+    border-color: var(--color-primary);
+    background: #f0f7ff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(9, 132, 227, 0.1);
+}
+
+.nav-link.next {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.nav-arrow {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.nav-text {
+    display: flex;
+    flex-direction: column;
+    margin: 0 15px;
+}
+
+.nav-text small {
+    color: #636e72;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-text div {
+    font-weight: 600;
+}
+
+.nav-disabled {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f5f5f5;
+    color: #b2bec3;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    width: 100%;
+    cursor: not-allowed;
+    font-size: 14px;
+}
+
+/* Кодовые блоки */
+pre, code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 14px;
+}
+
+figure.highlight, pre {
+    background: #0d1117;
+    color: #c9d1d9;
+    border-radius: 6px;
+    padding: 16px;
+    overflow: auto;
+    line-height: 1.45;
+    border: 1px solid #30363d;
+    margin: 20px 0;
+}
+
+.highlight .k { color: #ff7b72; }
+.highlight .s { color: #a5d6ff; }
+.highlight .nf { color: #d2a8ff; }
+.highlight .nc { color: #f0883e; }
+.highlight .nn { color: #f0883e; }
+.highlight .c1 { color: #8b949e; font-style: italic; }
+.highlight .mi { color: #79c0ff; }
+.highlight .o { color: #ff7b72; }
+
+.highlight {
+    position: relative;
+}
+
+.copy-code-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #30363d;
+    color: #c9d1d9;
+    border: 1px solid #f0f6fc1a;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    opacity: 0;
+}
+
+.highlight:hover .copy-code-button {
+    opacity: 1;
+}
+
+.copy-code-button:hover {
+    background: #444c56;
+    border-color: #8b949e;
+}
+
+.copy-code-button.copied {
+    background: #238636;
+    color: white;
+}
+
+/* Таблицы */
+.lesson-content-wrapper table {
+    width: 100%;
+    margin: 25px 0;
+    border-collapse: collapse;
+    line-height: 1.5;
+    font-size: 15px;
+    display: block;
+    overflow-x: auto;
+}
+
+.lesson-content-wrapper th {
+    background-color: #f6f8fa;
+    font-weight: 600;
+    text-align: left;
+    border: 1px solid #d0d7de;
+    padding: 12px 15px;
+}
+
+.lesson-content-wrapper td {
+    border: 1px solid #d0d7de;
+    padding: 10px 15px;
+    vertical-align: top;
+}
+
+.lesson-content-wrapper tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+.lesson-content-wrapper tr:hover {
+    background-color: #f2f8ff;
+}
+
+.lesson-content-wrapper td code {
+    background: #afb8c133;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 85%;
+}
+
+/* Навигация по урокам */
+.header-nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-link {
+    position: relative;
+    padding: 8px 16px;
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid transparent;
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+    background-color: #f0f7ff;
+    border-color: #d1e7ff;
+    transform: translateY(-1px);
+}
+
+.nav-link.active {
+    color: var(--color-primary);
+    background-color: #e6f2ff;
+    font-weight: 600;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.nav-link:hover::after {
+    width: 60%;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+/* Кнопки прокрутки */
+.scroll-nav {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.scroll-nav button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, transform 0.3s ease, visibility 0.4s;
+}
+
+.scroll-nav button:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    background-color: var(--color-primary-dark);
+}
+
+#scrollTopBtn, #scrollBottomBtn {
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    transition: opacity 0.4s ease, transform 0.3s ease, visibility 0.4s;
+}
+
+#scrollTopBtn.is-visible, #scrollBottomBtn.is-visible {
+    opacity: 0.7;
+    visibility: visible;
+}
+
+.scroll-nav button.is-visible {
+    opacity: 0.7;
+    visibility: visible;
+}
+
+.scroll-nav button.is-visible:hover {
+    opacity: 1;
+    transform: translateY(-3px);
 }
 
 /* === АДАПТИВНОСТЬ === */
@@ -204,502 +679,45 @@ footer {
         padding: 0 15px;
     }
 
-    .lessons-container h1{
+    .lessons-container h1 {
         font-size: 1.4rem;
-        margin-top: 0px;
+        margin-top: 0;
     }
 }
 
-/* Класс для блокировки карточки курса */
-.card.locked {
-    filter: grayscale(0.9); /* Делает карточку серой */
-    opacity: 0.7;           /* Делает ее полупрозрачной */
-    position: relative;
-    pointer-events: none;   /* Запрещает клики по кнопкам внутри */
-    user-select: none;      /* Запрещает выделение текста */
-    cursor: not-allowed;
-}
-
-/* Добавляем надпись "Скоро" поверх заблокированной карточки */
-.card.locked::before {
-    content: "недоступно";
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #636e72;
-    color: #fff;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    z-index: 2;
-}
-
-/* Класс для блокировки ссылок в меню */
-.nav-links a.disabled {
-    color: #beccd1 !important; /* Серый цвет */
-    pointer-events: none;      /* Нельзя кликнуть */
-    opacity: 0.5;
-    cursor: default;
-}
-
-/* Убираем эффект подчеркивания у заблокированных ссылок */
-.nav-links a.disabled::after {
-    display: none;
-}
-
-/* Стили для контейнера логотипа */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Отступ между иконкой и текстом */
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-/* Стили для самой иконки */
-.logo-icon {
-    width: 32px;  /* Ширина иконки */
-    height: 32px; /* Высота иконки */
-    color: #0984e3; /* Цвет иконки */
-    transition: transform 0.3s ease;
-}
-
-/* Эффект при наведении на логотип */
-.logo:hover .logo-icon {
-    transform: rotate(-10deg) scale(1.1); /* Иконка слегка дергается */
-    color: #fff; /* Иконка белеет вместе с текстом */
-}
-
-/* --- СТИЛИ ДЛЯ СПИСКА УРОКОВ (python.html) --- */
-
-.lessons-container {
-    margin-top: 30px;
-    animation: fadeIn 0.8s ease;
-}
-
-.lessons-container h1 {
-    margin-top: 0px;
-}
-
-.lessons-list {
-    display: grid;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.lesson-item {
-    display: flex;
-    align-items: center;
-    background: #ffffff;
-    padding: 18px 25px;
-    border-radius: 12px;
-    text-decoration: none;
-    color: #2d3436;
-    border: 1px solid #e1e4e8;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-}
-
-.lesson-item:hover {
-    border-color: #0984e3;
-    background: #f8fbff;
-    transform: translateX(10px);
-    box-shadow: 0 4px 12px rgba(9, 132, 227, 0.08);
-}
-
-/* Номер урока в кружочке */
-.lesson-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    background: #eef2f7;
-    color: #0984e3;
-    border-radius: 50%;
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-right: 20px;
-    flex-shrink: 0;
-    transition: background 0.3s;
-}
-
-.lesson-item:hover .lesson-number {
-    background: #0984e3;
-    color: #fff;
-}
-
-.lesson-title {
-    font-weight: 500;
-    font-size: 1.1rem;
-    flex-grow: 1;
-}
-
-/* Иконка стрелочки в конце */
-.lesson-item::after {
-    content: '→';
-    font-size: 1.2rem;
-    color: #b2bec3;
-    transition: transform 0.3s;
-}
-
-.lesson-item:hover::after {
-    transform: translateX(5px);
-    color: #0984e3;
-}
-
-/* --- СТИЛИ ДЛЯ СТРАНИЦЫ САМОГО УРОКА --- */
-
-.lesson-content-wrapper {
-    background: #fff;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    margin: 10px 0;
-}
-
-/* Оформление блоков кода (вы же будете давать код студентам) */
-.lesson-content-wrapper pre {
-    background: #2d3436;
-    color: #fab1a0;
-    padding: 20px;
-    border-radius: 10px;
-    overflow-x: auto;
-    font-family: 'Fira Code', 'Courier New', monospace;
-}
-
-.lesson-content-wrapper h1 {
-    color: #2d3436;
-    margin-bottom: 10px;
-}
-
-.back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #636e72;
-    text-decoration: none;
-    font-weight: 500;
-    margin-bottom: 20px;
-    transition: color 0.2s;
-}
-
-.back-btn:hover {
-    color: #0984e3;
-}
-
-/* Адаптивность для мобилок */
 @media (max-width: 600px) {
     .lesson-item {
         padding: 15px;
     }
+
     .lesson-number {
         margin-right: 12px;
     }
+
     .lesson-title {
         font-size: 0.95rem;
     }
+
     .lesson-content-wrapper {
         padding: 20px;
     }
-    .lessons-container h1{
+
+    .lessons-container h1 {
         font-size: 1.4rem;
-        margin-top: 0px;
+        margin-top: 0;
     }
-}
 
-/* Делаем body и html на всю высоту экрана */
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-/* Контейнер-обертка превращается во Flex-контейнер */
-.site-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Минимальная высота — 100% видимого экрана */
-}
-
-/* Контентная часть забирает всё свободное место, выталкивая футер вниз */
-.main-content {
-    flex: 1 0 auto;
-}
-
-/* Футер просто фиксируется в конце */
-footer {
-    flex-shrink: 0;
-    background: #2d3436; /* Ваш цвет футера */
-    color: white;
-    padding: 20px 0;
-    margin-top: 40px; /* Отступ от контента, если его много */
-}
-
-/* Стили для блоков кода */
-pre, code {
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 14px;
-}
-
-/* Контейнер кода (как на GitHub) */
-figure.highlight, pre {
-    background: #0d1117; /* Глубокий темный фон GitHub */
-    color: #c9d1d9;
-    border-radius: 6px;
-    padding: 16px;
-    overflow: auto;
-    line-height: 1.45;
-    border: 1px solid #30363d;
-    margin: 20px 0;
-}
-
-/* Подсветка синтаксиса (цвета Rouge) */
-.highlight .k { color: #ff7b72; } /* Ключевые слова (if, def) */
-.highlight .s { color: #a5d6ff; } /* Строки "text" */
-.highlight .nf { color: #d2a8ff; } /* Названия функций */
-.highlight .nc { color: #f0883e; } /* Классы */
-.highlight .nn { color: #f0883e; } /* Модули */
-.highlight .c1 { color: #8b949e; font-style: italic; } /* Комментарии # */
-.highlight .mi { color: #79c0ff; } /* Числа */
-.highlight .o { color: #ff7b72; }  /* Операторы (=, +) */
-
-/* Контейнер для позиционирования кнопки */
-.highlight {
-    position: relative;
-}
-
-.copy-code-button {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: #30363d;
-    color: #c9d1d9;
-    border: 1px solid #f0f6fc1a;
-    border-radius: 6px;
-    padding: 5px 10px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s;
-    opacity: 0; /* Скрыта по умолчанию */
-}
-
-/* Показываем кнопку при наведении на блок кода */
-.highlight:hover .copy-code-button {
-    opacity: 1;
-}
-
-.copy-code-button:hover {
-    background: #444c56;
-    border-color: #8b949e;
-}
-
-.copy-code-button.copied {
-    background: #238636; /* Зеленый цвет при успехе */
-    color: white;
-}
-
-.lesson-divider {
-    border: 0;
-    border-top: 1px solid #e1e4e8;
-    margin: 40px 0 20px;
-}
-
-.lesson-navigation {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.nav-prev, .nav-next {
-    flex: 1;
-    display: flex;
-}
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    background: #fff;
-    border: 1px solid #e1e4e8;
-    border-radius: 12px;
-    text-decoration: none;
-    color: #2d3436;
-    width: 100%;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.nav-link:hover {
-    border-color: #0984e3;
-    background: #f0f7ff;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(9, 132, 227, 0.1);
-}
-
-.nav-link.next {
-    justify-content: flex-end;
-    text-align: right;
-}
-
-.nav-arrow {
-    font-size: 20px;
-    font-weight: bold;
-    color: #0984e3;
-}
-
-.nav-text {
-    display: flex;
-    flex-direction: column;
-    margin: 0 15px;
-}
-
-.nav-text small {
-    color: #636e72;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.nav-text div {
-    font-weight: 600;
-}
-
-/* Стили для неактивных кнопок */
-.nav-disabled {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    background: #f5f5f5;
-    color: #b2bec3;
-    border-radius: 12px;
-    border: 1px solid #eee;
-    width: 100%;
-    cursor: not-allowed;
-    font-size: 14px;
-}
-
-@media (max-width: 600px) {
     .lesson-navigation {
         flex-direction: column;
     }
-}
 
-/* Контейнер для кнопок */
-.scroll-nav {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 1000;
-}
-
-/* Общий стиль кнопок */
-.scroll-nav button {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: #0984e3;
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: flex;opacity: 0;           /* По умолчанию полностью прозрачны */
-    transition: opacity 0.4s ease, transform 0.3s ease, visibility 0.4s;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    opacity: 0;           /* По умолчанию полностью прозрачны */
-    visibility: hidden;    /* И не кликабельны */
-    transition: opacity 0.4s ease, transform 0.3s ease, visibility 0.4s;
-}
-
-.scroll-nav button:hover {
-    opacity: 1;
-    transform: translateY(-3px);
-    background-color: #0773c5;
-}
-
-#scrollTopBtn, #scrollBottomBtn {
-    opacity: 0;
-    visibility: hidden;
-    display: flex; /* Кнопки всегда имеют flex-структуру */
-    transition: opacity 0.4s ease, transform 0.3s ease, visibility 0.4s;
-}
-
-#scrollTopBtn.is-visible, #scrollBottomBtn.is-visible {
-    opacity: 0.7;
-    visibility: visible;
-}
-
-/* Класс, который мы будем добавлять через JS */
-.scroll-nav button.is-visible {
-    opacity: 0.7;
-    visibility: visible;
-}
-
-.scroll-nav button.is-visible:hover {
-    opacity: 1;
-    transform: translateY(-3px);
-}
-
-/* Адаптивность для мобильных */
-@media (max-width: 600px) {
     .scroll-nav {
         right: 15px;
         bottom: 15px;
     }
+
     .scroll-nav button {
         width: 40px;
         height: 40px;
     }
-}
-
-/* Контейнер для адаптивности (чтобы таблицы не вылезали за край на телефонах) */
-.lesson-content-wrapper table {
-    width: 100%;
-    margin: 25px 0;
-    border-collapse: collapse; /* Убирает двойные рамки */
-    line-height: 1.5;
-    font-size: 15px;
-    display: block;
-    overflow-x: auto; /* Добавляет горизонтальную прокрутку на мобильных */
-}
-
-/* Стили заголовков */
-.lesson-content-wrapper th {
-    background-color: #f6f8fa;
-    font-weight: 600;
-    text-align: left;
-    border: 1px solid #d0d7de;
-    padding: 12px 15px;
-}
-
-/* Стили ячеек */
-.lesson-content-wrapper td {
-    border: 1px solid #d0d7de;
-    padding: 10px 15px;
-    vertical-align: top;
-}
-
-/* "Зебра" — подсвечиваем каждую вторую строку для читаемости */
-.lesson-content-wrapper tr:nth-child(even) {
-    background-color: #fcfcfc;
-}
-
-/* Подсветка строки при наведении */
-.lesson-content-wrapper tr:hover {
-    background-color: #f2f8ff;
-}
-
-/* Чтобы код внутри таблиц выглядел аккуратно */
-.lesson-content-wrapper td code {
-    background: #afb8c133;
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-size: 85%;
 }
